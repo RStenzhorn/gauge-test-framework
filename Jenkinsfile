@@ -27,7 +27,7 @@ pipeline {
                     script {
                         try {
                             if(params.SPEC.isEmpty()) {
-                                sh """mvn test"""
+                                sh """gauge run specs"""
                             } else {
                                 sh """mvn gauge:execute -DspecsDir=specs'\''${params.SPEC}'.spec"""
                             }
