@@ -17,16 +17,37 @@ pipeline {
             image: toxiccuss/gauge:0.0.6
             command: ["cat"]
             tty: true
+          - name: maven
+            image: maven:3.8.5-openjdk-17
+            command: ["cat"]
+            tty: true
+            volumeMounts:
+              - name: maven-secret
+                mountPath: /usr/maven
+          volumes:
+            - name: maven-secret
+              secret:
+                secretName: maven-settings-secret
+                items:
+                  - key: settings.xml
+                    path: settings.xml
         '''
         }
     }
     stages {
+        stage('Maven: BUILD') {
+            steps {
+                container('maven') {
+                    sh 'mvn package -s /usr/maven/settings.xml -Dmaven.wagon.http.ssl.insecure=true'
+                }
+            }
+        }
         stage('Gauge: TEST') {
             steps {
                 container('gauge') {
                     script {
                         try {
-                            if(params.SPEC.isEmpty()) {
+                            if (params.SPEC.isEmpty()) {
                                 sh """gauge run specs"""
                             } else {
                                 sh """mvn gauge:execute -DspecsDir=specs'\''${params.SPEC}'.spec"""
