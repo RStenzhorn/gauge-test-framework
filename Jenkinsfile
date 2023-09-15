@@ -46,7 +46,8 @@ pipeline {
             steps {
                 container('gauge') {
                     script {
-                        sh """gauge """
+                        sh """ gauge config runner_connection_timeout 200000"""
+                        sh """ gauge config runner_request_timeout 500000"""
                         try {
                             if (params.SPEC.isEmpty()) {
                                 sh """gauge -v run specs """
