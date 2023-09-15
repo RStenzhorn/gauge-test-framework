@@ -47,7 +47,7 @@ pipeline {
                 container('gauge') {
                     script {
                         try {
-                            if (!params.SPEC.isEmpty()) {
+                            if (params.SPEC.isEmpty()) {
                                 sh """gauge run specs"""
                             }
                         } catch (Exception ignored) {
