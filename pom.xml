@@ -15,6 +15,7 @@
     <description>gauge-test-framework</description>
     <properties>
         <java.version>17</java.version>
+        <gauge.plugin.version>>1.5.0</gauge.plugin.version>
     </properties>
     <dependencies>
         <dependency>
@@ -34,5 +35,15 @@
             <version>0.10.2</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.thoughtworks.gauge.maven</groupId>
+                <artifactId>gauge-maven-plugin</artifactId>
+                <version>1.5.0</version>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
