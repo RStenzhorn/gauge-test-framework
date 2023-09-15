@@ -15,7 +15,7 @@
     <description>gauge-test-framework</description>
     <properties>
         <java.version>11</java.version>
-        <spring-cloud.version>2021.0.8</spring-cloud.version>
+        <spring-cloud.version>2022.0.4</spring-cloud.version>
     </properties>
 
     <dependencyManagement>
