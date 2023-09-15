@@ -48,7 +48,7 @@ pipeline {
                     script {
                         try {
                             if (params.SPEC.isEmpty()) {
-                                sh """gauge run specs"""
+                                sh """gauge -v run specs """
                             }
                         } catch (Exception ignored) {
                             currentBuild.result = 'UNSTABLE'
