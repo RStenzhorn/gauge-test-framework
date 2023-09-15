@@ -50,7 +50,7 @@ pipeline {
                             if (params.SPEC.isEmpty()) {
                                 sh """gauge run specs"""
                             } else {
-                                sh """mvn gauge:execute -DspecsDir=specs'\''${params.SPEC}'.spec"""
+                                sh """mvn gauge:execute -DspecsDir=${params.SPEC}"""
                             }
                         } catch (Exception ignored) {
                             currentBuild.result = 'UNSTABLE'
