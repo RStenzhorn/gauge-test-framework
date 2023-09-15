@@ -14,7 +14,7 @@ pipeline {
         spec:
           containers:
           - name: gauge
-            image: toxiccuss/gauge:0.1.0
+            image: toxiccuss/gauge:0.1.0-jdk11
             command: ["cat"]
             tty: true
           - name: maven

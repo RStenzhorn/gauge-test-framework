@@ -4,7 +4,7 @@ FROM ubuntu
 RUN apt-get update && apt-get install -q -y \
     curl \
     zip \
-    openjdk-17-jdk \
+    openjdk-11-jdk \
     apt-transport-https \
     gnupg2 \
     ca-certificates
