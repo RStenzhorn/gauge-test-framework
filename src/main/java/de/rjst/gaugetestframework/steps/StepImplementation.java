@@ -1,4 +1,4 @@
-package de.rjst.gaugetestframework;
+package de.rjst.gaugetestframework.steps;
 
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
@@ -36,7 +36,7 @@ public class StepImplementation {
             int expectedCount = Integer.parseInt(row.getCell("Vowel Count"));
             int actualCount = countVowels(word);
 
-            Assertions.assertThat(expectedCount).isEqualTo(actualCount);
+            assertThat(expectedCount).isEqualTo(actualCount);
         }
     }
 
