@@ -46,6 +46,7 @@ pipeline {
             steps {
                 container('gauge') {
                     script {
+                        sh """gauge """
                         try {
                             if (params.SPEC.isEmpty()) {
                                 sh """gauge -v run specs """
