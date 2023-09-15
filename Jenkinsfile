@@ -14,7 +14,7 @@ pipeline {
         spec:
           containers:
           - name: gauge
-            image: toxiccuss/gauge:0.0.6
+            image: toxiccuss/gauge:0.1.0
             command: ["cat"]
             tty: true
           - name: maven
@@ -35,6 +35,13 @@ pipeline {
         }
     }
     stages {
+        stage('Maven: BUILD') {
+            steps {
+                container('maven') {
+                    sh 'mvn package -s /usr/maven/settings.xml -Dmaven.wagon.http.ssl.insecure=true'
+                }
+            }
+        }
         stage('Gauge: TEST') {
             steps {
                 container('gauge') {

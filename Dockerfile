@@ -1,15 +1,18 @@
-FROM maven:3.8.5-openjdk-17
+FROM ubuntu
 
-RUN mkdir -p /app
+# Install Java.
+RUN apt-get update && apt-get install -q -y \
+    curl \
+    zip \
+    openjdk-17-jdk \
+    apt-transport-https \
+    gnupg2 \
+    ca-certificates
 
-COPY manifest.json /app
+RUN curl -SsL https://downloads.gauge.org/stable | sh
 
-WORKDIR /app
+# Install gauge plugins
+RUN gauge install java && \
+    gauge install screenshot
 
-# Install gauge
-RUN microdnf install -y unzip \
-    && curl -Ssl https://downloads.gauge.org/stable | sh
-
-
-RUN gauge install && gauge install screenshot
-
+ENV PATH=$HOME/.gauge:$PATH
