@@ -47,9 +47,7 @@ pipeline {
                 container('gauge') {
                     script {
                         try {
-                            if (params.SPEC.isEmpty()) {
-                                sh """gauge run specs"""
-                            } else {
+                            if (!params.SPEC.isEmpty()) {
                                 sh """mvn gauge:execute -DspecsDir=${params.SPEC}"""
                             }
                         } catch (Exception ignored) {
