@@ -35,13 +35,6 @@ pipeline {
         }
     }
     stages {
-        stage('Maven: BUILD') {
-            steps {
-                container('maven') {
-                    sh 'mvn package -s /usr/maven/settings.xml -Dmaven.wagon.http.ssl.insecure=true'
-                }
-            }
-        }
         stage('Gauge: TEST') {
             steps {
                 container('gauge') {
