@@ -4,7 +4,7 @@ pipeline {
         timeout(time: 2)
     }
     parameters {
-        string(name: 'SPEC', defaultValue: '', description: '')
+        string(name: 'SPEC', defaultValue: 'specs/example.spec', description: 'Path to Specfile')
     }
     agent {
         kubernetes {
