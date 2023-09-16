@@ -17,6 +17,10 @@ pipeline {
             image: maven:3.8.5-openjdk-17
             command: ["cat"]
             tty: true
+          - name: gauge
+            image: toxiccuss/gauge:0.3.0
+            command: ["cat"]
+            tty: true
             volumeMounts:
               - name: maven-secret
                 mountPath: /usr/maven
@@ -40,7 +44,7 @@ pipeline {
         }
         stage('Gauge: TEST') {
             steps {
-                container('maven') {
+                container('gauge') {
                     script {
                         try {
                             if (!params.SPEC.isEmpty()) {
