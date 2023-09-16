@@ -13,10 +13,6 @@ pipeline {
         kind: Pod
         spec:
           containers:
-          - name: gauge
-            image: toxiccuss/gauge:0.1.0-jdk11
-            command: ["cat"]
-            tty: true
           - name: maven
             image: maven:3.8.5-openjdk-17
             command: ["cat"]
@@ -44,13 +40,11 @@ pipeline {
         }
         stage('Gauge: TEST') {
             steps {
-                container('gauge') {
+                container('maven') {
                     script {
-                        sh """ gauge config runner_connection_timeout 200000"""
-                        sh """ gauge config runner_request_timeout 500000"""
                         try {
-                            if (params.SPEC.isEmpty()) {
-                                sh """gauge -v run specs """
+                            if (!params.SPEC.isEmpty()) {
+                                sh """mvn gauge:execute -DspecsDir=${params.SPEC}"""
                             }
                         } catch (Exception ignored) {
                             currentBuild.result = 'UNSTABLE'
