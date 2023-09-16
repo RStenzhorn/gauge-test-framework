@@ -17,13 +17,13 @@ pipeline {
             image: maven:3.8.5-openjdk-17
             command: ["cat"]
             tty: true
+            volumeMounts:
+              - name: maven-secret
+                mountPath: /usr/maven
           - name: gauge
             image: toxiccuss/gauge:0.3.0
             command: ["cat"]
             tty: true
-            volumeMounts:
-              - name: maven-secret
-                mountPath: /usr/maven
           volumes:
             - name: maven-secret
               secret:
