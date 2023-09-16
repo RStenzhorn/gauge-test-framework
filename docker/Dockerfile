@@ -5,6 +5,7 @@ RUN microdnf install -y unzip \
 
 # Install gauge plugins
 RUN gauge install java && \
-    gauge install screenshot
+    gauge install screenshot && \
+    gauge install html-report
 
 ENV PATH=$HOME/.gauge:$PATH

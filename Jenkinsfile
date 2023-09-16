@@ -21,7 +21,7 @@ pipeline {
               - name: maven-secret
                 mountPath: /usr/maven
           - name: gauge
-            image: toxiccuss/gauge:0.3.0
+            image: toxiccuss/gauge:0.3.1
             command: ["cat"]
             tty: true
           volumes:
